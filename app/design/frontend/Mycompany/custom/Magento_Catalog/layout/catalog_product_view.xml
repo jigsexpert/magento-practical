@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+
+    <body>
+
+
+        <move element="product.info.media" destination="product.info.main" before="-" />
+
+        <!-- <move element="product.info.description" destination="product.info.media" /> -->
+
+        <move element="page.main.title" destination="sidebar.additional"/>
+
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+
+        <referenceBlock name="catalog.compare.sidebar" display="false" />
+        
+        <move element="product.info.price" destination="sidebar.additional" after="page.main.title"/>
+
+
+        <!-- <move element="product.info.options.swatches" destination="sidebar.additional" after="product.info.price"/> -->
+        
+        <move element="product.info" destination="sidebar.additional"/>
+
+        <referenceBlock name="product.info.extrahint" remove="true"/>
+
+        
+        <move element="product.info.details" destination="content" before="-"/>
+
+        <move element="product.info.overview" destination="sidebar.additional" after="page.main.title"/>
+
+        <referenceBlock name="product.info.sku" remove="true"/>        
+
+        
+
+        <referenceContainer name="content">
+          <block class="Magento\Cms\Block\Block" name="custom_block">
+            <arguments>
+              <argument name="block_id" xsi:type="string">custom_block</argument>
+            </arguments>
+          </block>
+        </referenceContainer>
+
+        <move element="custom_block" destination="sidebar.additional" after="product.info"/>
+
+
+        <referenceContainer name="content">
+          <block class="Magento\Cms\Block\Block" name="editor_note">
+            <arguments>
+              <argument name="block_id" xsi:type="string">editor_note</argument>
+            </arguments>
+          </block>
+        </referenceContainer>
+
+        <move element="editor_note" destination="main-note-editor"/>
+
+
+        <container name="main-product-container" label="Main Product Container" htmlTag="div" htmlClass="main-product-container">
+
+        </container>
+
+        <move element="main-product-container" destination="content" after="product.info.main"/>
+
+
+        <!-- <move element="product.info.details" destination="main-product-container" before="-"/>
+        <move element="product.info.main" destination="main-product-container" after="product.info.details"/>
+        <move element="sidebar.additional" destination="main-product-container" after="product.info.main"/>
+         -->
+        <move element="sidebar.additional" destination="main-product-container"/>
+
+
+        <container name="main-note-editor" label="Main Note Editor" htmlTag="div" htmlClass="main-note-editor" after="main-product-container">
+
+        </container>
+
+        <move element="main-note-editor" destination="content" after="main-product-container"/>
+
+</body>
+</page>
